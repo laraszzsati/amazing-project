@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>LinguaNovel - Translated Novels Hub</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Rubik:wght@400;500&display=swap');
+
+    :root {
+      --color-primary: #a56c4d; /* Warm brown */
+      --color-secondary: #f7f1e1; /* Soft cream */
+      --color-accent: #9c6644; /* Darker brown */
+      --color-text: #3e3e3e;
+      --color-bg: #fefefe;
+      --color-button-bg: #a56c4d;
+      --color-button-hover: #8b5c3b;
+      --shadow-light: 0 4px 10px rgba(165, 108, 77, 0.3);
+      --border-radius: 12px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      background-color: var(--color-bg);
+      font-family: 'Rubik', sans-serif;
+      color: var(--color-text);
+      line-height: 1.6;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    a {
+      color: var(--color-primary);
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    a:hover {
+      color: var(--color-accent);
+    }
+
+    header {
+      background-color: var(--color-secondary);
+      padding: 2rem 1.5rem;
+      text-align: center;
+      box-shadow: var(--shadow-light);
+    }
+
+    header h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 3rem;
+      margin: 0;
+      color: var(--color-primary);
+      user-select: none;
+    }
+
+    header p.tagline {
+      margin-top: 0.5rem;
+      font-weight: 500;
+      color: var(--color-accent);
+      font-size: 1.2rem;
+      user-select: none;
+    }
+
+    main {
+      flex-grow: 1;
+      max-width: 960px;
+      margin: 2rem auto 3rem auto;
+      padding: 0 1rem;
+      width: 100%;
+    }
+
+    .hero {
+      background: url('https://images.unsplash.com/photo-1512820790803-83ca734da794?auto=format&fit=crop&w=1067&q=80') no-repeat center center/cover;
+      border-radius: var(--border-radius);
+      padding: 4rem 2rem;
+      color: var(--color-secondary);
+      box-shadow: var(--shadow-light);
+      position: relative;
+      overflow: hidden;
+      text-align: center;
+    }
+
+    .hero::after {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; bottom: 0; right: 0;
+      background: rgba(165, 108, 77, 0.6);
+      z-index: 0;
+      border-radius: var(--border-radius);
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      max-width: 600px;
+      margin: 0 auto;
+      user-select: none;
+    }
+
+    .hero h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.8rem;
+      margin-bottom: 1rem;
+    }
+
+    .hero p {
+      font-size: 1.25rem;
+      margin-bottom: 2rem;
+    }
+
+    .hero button {
+      background-color: var(--color-button-bg);
+      border: none;
+      padding: 1rem 2.5rem;
+      font-size: 1.1rem;
+      color: var(--color-secondary);
+      font-weight: 600;
+      border-radius: var(--border-radius);
+      cursor: pointer;
+      box-shadow: var(--shadow-light);
+      transition: background-color 0.3s ease;
+    }
+
+    .hero button:hover {
+      background-color: var(--color-button-hover);
+    }
+
+    section.popular-novels {
+      margin-top: 3rem;
+    }
+
+    section.popular-novels h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem;
+      margin-bottom: 1rem;
+      color: var(--color-primary);
+      user-select: none;
+    }
+
+    .novel-grid {
+      display: grid;
+      gap: 1.5rem;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    }
+
+    article.novel-card {
+      background-color: var(--color-secondary);
+      border-radius: var(--border-radius);
+      box-shadow: var(--shadow-light);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      cursor: default;
+      user-select: none;
+      transition: transform 0.3s ease;
+    }
+
+    article.novel-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 8px 20px rgba(165, 108, 77, 0.5);
+    }
+
+    .novel-image {
+      width: 100%;
+      aspect-ratio: 3 / 4;
+      object-fit: cover;
+      flex-shrink: 0;
+      border-bottom: 3px solid var(--color-primary);
+    }
+
+    .novel-content {
+      padding: 1rem 1.25rem;
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .novel-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.25rem;
+      margin: 0 0 0.5rem 0;
+      color: var(--color-primary);
+    }
+
+    .novel-desc {
+      flex-grow: 1;
+      font-size: 0.95rem;
+      color: #5f4a40;
+    }
+
+    section.about {
+      margin-top: 4rem;
+      background-color: var(--color-secondary);
+      border-radius: var(--border-radius);
+      box-shadow: var(--shadow-light);
+      padding: 2.5rem 2rem;
+      text-align: center;
+      user-select: none;
+    }
+
+    section.about h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem;
+      margin-bottom: 1rem;
+      color: var(--color-primary);
+    }
+
+    section.about p {
+      max-width: 600px;
+      margin: 0 auto;
+      font-size: 1.1rem;
+      color: #6d584f;
+      line-height: 1.5;
+    }
+
+    footer {
+      background-color: var(--color-primary);
+      color: var(--color-secondary);
+      text-align: center;
+      padding: 1rem 1rem;
+      font-size: 0.9rem;
+      user-select: none;
+    }
+
+    @media (max-width: 480px) {
+      header h1 {
+        font-size: 2.2rem;
+      }
+
+      .hero h2 {
+        font-size: 2rem;
+      }
+
+      .hero p {
+        font-size: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>LinguaNovel</h1>
+    <p class="tagline">Your Gateway to the World's Best Novel Translations</p>
+  </header>
+  <main>
+    <section class="hero" aria-label="Welcome section">
+      <div class="hero-content">
+        <h2>Discover, Read, and Enjoy Translated Novels</h2>
+        <p>We bring your favorite stories from around the globe in the language you love.</p>
+        <button onclick="document.getElementById('popular').scrollIntoView({behavior:'smooth'})">Explore Novels</button>
+      </div>
+    </section>
+
+    <section class="popular-novels" id="popular" aria-label="Popular translated novels">
+      <h3>Popular Translated Novels</h3>
+      <div class="novel-grid">
+        <article class="novel-card" tabindex="0" aria-label="Novel: The Jade Chronicles">
+          <img src="https://cdn.pixabay.com/photo/2017/01/31/17/42/book-2022467_1280.jpg" alt="Cover of The Jade Chronicles" class="novel-image" />
+          <div class="novel-content">
+            <h4 class="novel-title">The Jade Chronicles</h4>
+            <p class="novel-desc">A gripping tale of love and betrayal set in ancient dynasties.</p>
+          </div>
+        </article>
+        <article class="novel-card" tabindex="0" aria-label="Novel: Beyond the Mystic Sea">
+          <img src="https://cdn.pixabay.com/photo/2018/02/01/10/24/fantasy-3129235_1280.jpg" alt="Cover of Beyond the Mystic Sea" class="novel-image" />
+          <div class="novel-content">
+            <h4 class="novel-title">Beyond the Mystic Sea</h4>
+            <p class="novel-desc">Dive into a world of magic and adventure on the other side of the ocean.</p>
+          </div>
+        </article>
+        <article class="novel-card" tabindex="0" aria-label="Novel: The Last Star Whisperer">
+          <img src="https://cdn.pixabay.com/photo/2017/02/04/12/13/fantasy-2031538_1280.jpg" alt="Cover of The Last Star Whisperer" class="novel-image" />
+          <div class="novel-content">
+            <h4 class="novel-title">The Last Star Whisperer</h4>
+            <p class="novel-desc">A journey through cosmos and destiny that changes everything.</p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="about" aria-label="About LinguaNovel">
+      <h3>About LinguaNovel</h3>
+      <p>LinguaNovel is dedicated to bringing the most captivating novels from cultures around the world to your fingertips. We believe great stories transcend language barriers, and provide a curated selection of high-quality translations for readers everywhere.</p>
+    </section>
+  </main>
+  <footer>
+    &copy; 2024 LinguaNovel. All rights reserved.
+  </footer>
+</body>
+</html>
+
